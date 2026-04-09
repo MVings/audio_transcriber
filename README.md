@@ -27,3 +27,38 @@ You can verify the installations by running:
 ```sh
 uv --version
 ffmpeg -version
+```
+## How to Run
+
+### Install dependencies
+
+From the root directory of the repository, synchronize the Python environment:
+```sh
+uv sync
+```
+This will create the virtual environment and install all required dependencies as defined in `pyproject.toml`.
+
+### Transcribe an audio or video file
+
+Provide the path to an audio or video file containing the audio to transcribe.
+
+Example (Windows / PowerShell):
+```sh
+$in = "C:\Users\...\Videos\2026-04-08 18-57-19.mkv"
+uv run whisper $in --model medium --output_format all --output_dir .
+```
+## Output
+
+The transcription results will be written to the current directory.
+
+Typical output formats include:
+
+- .txt
+- .srt
+- .json
+
+## Notes
+
+- The input file may be audio or video, as long as it contains an audio track.
+- The medium model provides a good balance between accuracy and performance.
+- ffmpeg is automatically used by Whisper to extract audio from video files.
